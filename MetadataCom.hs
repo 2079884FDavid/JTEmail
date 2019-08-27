@@ -6,7 +6,7 @@ module JTEmail.MetadataCom
 import JTEmail.ComInterface
 import JTHTML.Tables
 import JTHTML.Tags
-import qualified JTPrettyTime.Local as Time
+import qualified JTPrettyTime.Fetch as Time
 
 import Network.HostName
 import System.Environment
@@ -23,7 +23,7 @@ instance (ComInterface a) => ComInterface (MetadataCom a) where
 addMetadata :: String -> IO String
 addMetadata s = do
   host <- getHostName
-  curTime <- Time.getCurTimeString
+  curTime <- Time.getCurrentLocalIso8601
   path <- getExecutablePath
   prog <- getProgName
   args <- show <$> getArgs
